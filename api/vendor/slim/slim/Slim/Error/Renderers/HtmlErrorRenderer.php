@@ -24,14 +24,14 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
      */
     public function __invoke(Throwable $exception, bool $displayErrorDetails): string
     {
-        $title = 'Página não encontrada !';
+        $title = 'Erro inesperado !';
 
         if ($displayErrorDetails) {
             $html = '<p>The application could not run because of the following error:</p>';
             $html .= '<h2>Details</h2>';
             $html .= $this->renderExceptionFragment($exception);
         } else {
-            $html = '<p>A website error has occurred. Sorry for the temporary inconvenience.</p>';
+            $html = '<p>Ocorreu um erro no site. Desculpe pela inconveniência temporária.</p>';
         }
 
         return $this->renderHtmlBody($title, $html);
@@ -95,7 +95,7 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
             '   <body>' .
             '       <h1>%s</h1>' .
             '       <div>%s</div>' .
-            '       <a href="#" onClick="window.history.go(-1)">Go Back</a>' .
+            '       <a href="#" onClick="window.history.go(-1)">Retornar</a>' .
             '   </body>' .
             '</html>',
             $title,

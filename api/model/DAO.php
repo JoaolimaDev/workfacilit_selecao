@@ -2,16 +2,19 @@
 namespace model;
 use PDO;
 
-require_once("Db_handle.php");
+require_once("Database.php");
 
 class Sql{
     
     public static $stmt;
+    
 
-  public static function select(string $Raw_Query, string $db, array $params = array()) : array
+  public static function select(string $Raw_Query, array $params = array()) : array
   {
 
-      $conn = Handle::Db_handle($db);
+      $database = new Database;
+
+      $conn = $database->connect();
 
       Sql::$stmt = $conn->prepare($Raw_Query);
       
@@ -23,10 +26,12 @@ class Sql{
       
   }
 
-  public static function query(string $Raw_Query, string $db, array $params = array())
+  public static function query(string $Raw_Query, array $params = array())
   {
    
-    $conn = Handle::Db_handle($db);
+    $database = new Database;
+
+    $conn = $database->connect();
 
     Sql::$stmt = $conn->prepare($Raw_Query);
     

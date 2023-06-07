@@ -14,7 +14,7 @@ function loader() : void
         $prefix = str_replace("\\", DIRECTORY_SEPARATOR, $class);
 
 
-        require_once("api/".$prefix.".php");
+        require_once($prefix.".php");
 
 
     });
@@ -25,6 +25,7 @@ require_once("vendor/autoload.php");
 
 
 use Slim\Factory\AppFactory;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 
 
@@ -33,8 +34,50 @@ $app = AppFactory::create();
 
 $app->addRoutingMiddleware();
 
-$app->addErrorMiddleware(false, true, true);
+$app->addErrorMiddleware(true, true, true);
 
+
+$app->post('/api/act', function () {
+
+    loader();
+
+   new controller\User_Controller();
+     
+});
+
+$app->put('/api/act', function () {
+
+    loader();
+
+   new controller\User_Controller();
+     
+});
+
+$app->delete('/api/act', function () {
+
+    loader();
+
+   new controller\User_Controller();
+     
+});
+
+$app->get('/api/act/{menuop}', function (Request $request) {
+
+    loader();
+
+    $menuop = is_string($request->getAttribute('menuop')) ? htmlspecialchars($request->getAttribute('menuop')) : null;
+
+    new controller\User_Controller($menuop);
+     
+});
+
+$app->get('/api/act/', function () {
+
+    loader();
+
+    new controller\User_Controller();
+     
+});
 
 
 
