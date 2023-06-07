@@ -1,0 +1,19 @@
+{
+    "name": "rest/gip",
+    "authors": [
+        {
+            "name": "João vitor de lima",
+            "email": "ozymandiasphp@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.2.0",
+        "selective/basepath": "^2.1",
+        "slim/psr7": "^1.4"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
+    }
+}
